@@ -23,7 +23,7 @@ contract Crowdsale is Ownable {
     uint endTime;
 
     // Rate of token - 0.01 ETH = 1 token
-    uint constant TOKEN_RATE = 1e16;
+    uint constant TOKEN_RATE = 1e14;
 
     constructor(address _whitelist) public {
         whitelist = Whitelist(_whitelist);
@@ -62,12 +62,12 @@ contract Crowdsale is Ownable {
         return (startTime != 0 && now > endTime);
     }
 
-    function getToken() external view returns (address) {
-        return address(token);
-    }
-
     function getWhitelist() external view returns (address) {
         return address(whitelist);
+    }
+
+    function getToken() external view returns (address) {
+        return address(token);
     }
 
     function setToken(address addr) external onlyOwner {
