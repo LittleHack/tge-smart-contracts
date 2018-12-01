@@ -40,8 +40,10 @@ contract Crowdsale is Ownable {
 
         uint tokens = investment.div(TOKEN_RATE);
 
-        investors.push(investor);
-        investments[investor].add(investment);
+        if(investments[investor] == 0)
+            investors.push(investor);
+
+        investments[investor] = investments[investor].add(investment);
 
         token.transfer(investor, tokens);
     }
